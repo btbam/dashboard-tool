@@ -1,0 +1,73 @@
+@import 'globals.css.scss';
+
+.calendar {
+  margin:0;
+
+  .calendar-header {
+
+    .month {
+    }
+
+    a {
+      cursor:pointer;
+    }
+
+    .calendar-controls {
+      float:right;
+      margin-right:20px;
+    }
+  }
+
+  table.calendar {
+    max-width:220px;
+    text-align:center;
+    width:276px;
+    margin:12px 0 0 -45px;
+    font-size:10px;
+    color:#999;
+
+    thead {
+      font-size:10px;
+      color:#999;
+      text-transform:uppercase;
+      height:15px;
+    }
+
+    tbody {
+      line-height:12px;
+
+      td {
+        width:14.286%;
+        height:30px;
+        vertical-align:top;
+        text-align:center;
+        cursor:pointer;
+
+        &.no-click {
+          cursor:auto;
+        }
+      }
+
+      .day {
+        padding-top:2px;
+        font-weight:$font-bold;
+      }
+    }
+
+    .in-month .day {
+      color: #4A4A4A;
+    }
+
+    .claim-count {
+      font-size:14px;
+      color:#999;
+      font-weight:$font-light;
+      letter-spacing:-1px;
+    }
+
+    .selected {
+      background:transparent asset-url('blue-circle.svg') no-repeat center 0;
+      background-size:30px 30px;
+    }
+  }
+}

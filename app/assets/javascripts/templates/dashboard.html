@@ -1,0 +1,163 @@
+<div id="widget-summary">
+  <h2>Today's Summary</h2>
+  <table class="stats">
+    <tr>
+      <td class="clickable" ng-click="globalDataService.setSelectedDay()">
+        <div class="lbl">Claims Due</div>
+        <div class="count"><span count-to="{{ globalDataService.dueTodayCount }}"
+          value="0" duration="2"></span></div>
+      </td>
+      <td class="clickable" ng-click="globalDataService.setFilter('past-due')">
+        <div class="lbl">Past Due</div>
+        <div class="count"><span count-to="{{ globalDataService.filterCounts['past-due'] }}"
+          value="0" duration="2"></span></div>
+      </td>
+      <td class="clickable" ng-click="globalDataService.setFilter('no-due-date')">
+        <div class="lbl">No Due Date</div>
+        <div class="count"><span count-to="{{ globalDataService.filterCounts['no-due-date'] }}"
+          value="0" duration="2"></span></div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="widget-lastnote">
+  <h2>Days Since Creation or Last Note</h2>
+
+  <table class="lastnote">
+    <tr>
+      <td class="stats">
+        <select class="no-glow" ng-model="claimNoteService.lastNoteTimeFrame"
+          ng-change="globalDataService.rebuildCalendar(true)">
+          <option value="month">Monthly</option>
+          <option value="week">Weekly</option>
+        </select>
+
+        <table class="stats">
+          <tr class="lastnote-low" ng-click="globalDataService.setFilter('lastnote-low')">
+            <td class="lbl">{{ noteSeverityService.label(claimNoteService.lastNoteTimeFrame, 'low') }} Days</td>
+            <td class="count">{{ globalDataService.filterCounts['lastnote-low'] }}</td>
+          </tr>
+          <tr class="lastnote-med-low" ng-click="globalDataService.setFilter('lastnote-med-low')">
+            <td class="lbl">{{ noteSeverityService.label(claimNoteService.lastNoteTimeFrame, 'med-low') }} Days</td>
+            <td class="count">{{ globalDataService.filterCounts['lastnote-med-low'] }}</td>
+          </tr>
+          <tr class="lastnote-med" ng-click="globalDataService.setFilter('lastnote-med')">
+            <td class="lbl">{{ noteSeverityService.label(claimNoteService.lastNoteTimeFrame, 'med') }} Days</td>
+            <td class="count">{{ globalDataService.filterCounts['lastnote-med'] }}</td>
+          </tr>
+          <tr class="lastnote-high" ng-click="globalDataService.setFilter('lastnote-high')">
+            <td class="lbl">{{ noteSeverityService.label(claimNoteService.lastNoteTimeFrame, 'high') }} Days</td>
+            <td class="count">{{ globalDataService.filterCounts['lastnote-high'] }}</td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <histogram 
+          id="lastnote-low"
+          bar-padding="1"
+          data="globalDataService.daysSinceLastNoteBucketCounts['low']"
+          graph-height="160"
+          graph-width="130"
+          xmin="noteSeverityService.xmin(claimNoteService.lastNoteTimeFrame, 'low')"
+          xmax="noteSeverityService.xmax(claimNoteService.lastNoteTimeFrame, 'low')"
+          ymax="globalDataService.maxDaysSinceLastNoteBucketCount"
+          ng-click="globalDataService.setFilter('lastnote-low')">
+        </histogram>
+      </td>
+      <td>
+        <histogram
+          id="lastnote-med-low"
+          bar-padding="1"
+          data="globalDataService.daysSinceLastNoteBucketCounts['med-low']"
+          graph-height="160"
+          graph-width="130"
+          xmin="noteSeverityService.xmin(claimNoteService.lastNoteTimeFrame, 'med-low')"
+          xmax="noteSeverityService.xmax(claimNoteService.lastNoteTimeFrame, 'med-low')"
+          ymax="globalDataService.maxDaysSinceLastNoteBucketCount"
+          ng-click="globalDataService.setFilter('lastnote-med-low')">
+        </histogram>
+      </td>
+      <td>
+        <histogram
+          id="lastnote-med"
+          bar-padding="1"
+          data="globalDataService.daysSinceLastNoteBucketCounts['med']"
+          graph-height="160"
+          graph-width="130"
+          xmin="noteSeverityService.xmin(claimNoteService.lastNoteTimeFrame, 'med')"
+          xmax="noteSeverityService.xmax(claimNoteService.lastNoteTimeFrame, 'med')"
+          ymax="globalDataService.maxDaysSinceLastNoteBucketCount"
+          ng-click="globalDataService.setFilter('lastnote-med')">
+        </histogram>
+      </td>
+      <td>
+        <histogram
+          id="lastnote-high"
+          bar-padding="1"
+          data="globalDataService.daysSinceLastNoteBucketCounts['high']"
+          graph-height="160"
+          graph-width="130"
+          xmin="noteSeverityService.xmin(claimNoteService.lastNoteTimeFrame, 'high')"
+          xmax="noteSeverityService.xmax(claimNoteService.lastNoteTimeFrame, 'high')"
+          ymax="globalDataService.maxDaysSinceLastNoteBucketCount"
+          ng-click="globalDataService.setFilter('lastnote-high')">
+        </histogram>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="widget-flags" ng-show="globalDataService.flagsVisible">
+  <table class="stats">
+    <tr>
+      <td ng-click="globalDataService.setFilter('touch')">
+        <h2>Touch Flag</h2>
+        <div class="graph-container">
+          <div class="lbl-block">
+            <div class="count">{{ globalDataService.filterCounts.touch }}</div>
+            <div class="lbl">Claims</div>
+          </div>
+          <radial-graph class="touch"
+            animate="true"
+            id-prefix="touch-graph"
+            pct="globalDataService.statTouchPct()"
+            radius="68"
+            stroke-width="22"></radial-graph>
+        </div>
+      </td>
+      <td ng-click="globalDataService.setFilter('duration')">
+        <h2>Duration Flag</h2>
+        <div class="graph-container">
+          <div class="lbl-block">
+            <div class="count">{{ globalDataService.filterCounts.duration }}</div>
+            <div class="lbl">Claims</div>
+          </div>
+          <radial-graph class="duration"
+            animate="true"
+            id-prefix="duration-graph"
+            pct="globalDataService.statDurationPct()"
+            radius="68"
+            stroke-width="22"></radial-graph>
+        </div>
+      </td>
+      <td>
+        <h2>LifeCycle Flag</h2>
+        <div class="graph-container">
+          <div class="lbl-block">
+            <div class="count">0</div>
+            <div class="lbl">Claims</div>
+          </div>
+          <radial-graph class="lifecycle"
+            animate="true"
+            id-prefix="lifecycle-graph"
+            pct="0"
+            radius="68"
+            stroke-width="22"></radial-graph>
+        </div>
+      </td>
+    </tr>
+  </table>        
+</div>
+
+<ng-include src="'legal-disclaimer.html'"></ng-include>

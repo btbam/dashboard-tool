@@ -1,0 +1,216 @@
+<div class="reminder-container" ng-class="{'editing-note': editingNote}">
+  <div class="due-date-container" ng-click="toggleDatePickerOpen($event)"
+    ng-class="{'past-due': claim.isPastDue}">
+    <img src="/assets/icon-calendar.svg" width="15" height="16" alt="Add Reminder Date">
+    <span class="due-date-label"><span ng-if="claim.isPastDue">Past </span>Due</span>
+    <span class="due-date">{{(claim.feature_date.due | date : 'shortDate' : 'UTC') || 'N/A'}}</span>
+    <img src="/assets/icon-down-caret.svg" width="10" alt="Add Reminder Date">
+  </div>
+  <div class="date-picker" ng-show="datePickerOpen"
+    click-outside="toggleDatePickerOpen()" ng-click="datePickerClick($event)">
+
+    <datepicker class="calendar"
+      ng-model="newDueDate"
+      init-date="today"
+      show-weeks="false"
+      show-button-bar="false"
+      datepicker-append-to-body="false"
+      min-date="today"></datepicker>
+
+    <div class="update-all">
+      <div class="checkbox-wrapper">
+        <input id="fi_update_all" type="checkbox" ng-model="updateAll" name="update-all">
+        <label for="fi_update_all">Apply to features</label>
+      </div>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="dateChanged()">Set Date</button>
+    </div>
+  </div>
+
+  <div class="add-reminder" ng-show="loadedDetails"
+    ng-click="addNote('follow-up')" ng-class="{off: editingNote}" id="add-reminder-button">
+    <img src="/assets/icon-plus.svg" width="40" height="40" alt="Add Reminder">
+    <a>Add a reminder</a>
+  </div>
+</div>
+
+<img src="/assets/icon-close.svg" width="30" height"30" alt="Close" class="close-detail"
+  ng-click="globalDataService.closeClaimDetail()">
+
+<div class="claim-detail-header">
+  <table class="detail">
+    <tr>
+      <th>Claim #</th>
+      <th>Claimant</th>
+      <th>State</th>
+      <th>Total Reserve</th>
+      <th>Total Paid</th>
+      <th>Med</th>
+      <th><span ng-show="globalDataService.flagsVisible">Flags</span></th>
+    </tr>
+    <tr>
+      <td>{{claim.claim_id}}-{{claim.feature_id}}</td>
+      <td class="text-capitalize">{{claim.claimant_name}}</td>
+      <td>{{claim.state ? claim.state : 'N/A'}}</td>
+      <td>{{claim.total_outstanding | currency}}</td>
+      <td>{{claim.total_paid | currency}}</td>
+      <td>{{claim.medical_outstanding | currency}}</td>
+      <td id="detail-header-flags">
+        <span ng-click="flagDetailVisible = ! flagDetailVisible" ng-show="globalDataService.flagsVisible">
+          <span class="attention-flag {{flag.type}} {{flag.severity}}"
+            ng-repeat="flag in claim.flags"
+            ng-if="claimFlagService.canShowFlag(flag)"></span>
+        </span>
+        <span ng-if="claim.flags.length < 1">&nbsp;</span>
+        <div id="flag-detail" click-outside="flagDetailVisible = false"
+          ng-show="flagDetailVisible && claim.flags.length" outside-if-not="detail-header-flags">
+          <ul class="list-unstyled">
+            <li ng-if="claimFlagService.claimHasFlag(claim, 'touch')">
+              <div class="title">
+                <span class="attention-flag touch"></span>
+                <span class="flag-name">Touch Model Flag</span>
+              </div>
+              <div class="reason">This feature has much less activity recorded in the notes relative to
+                similar features, which may increase the overall duration of this feature.</div>
+              <div class="action">Consider whether additional near-term actions could minimize the
+                duration of the feature.</div>
+              <a class="dispute-flag dispute-flag-touch"
+                ng-click="claimFlagService.disputeFlag(claim, 'touch')">{{claimFlagService.claimFlagDisputed(claim, 'touch')
+                  ? 'FLAG DISPUTED' : 'DISPUTE THIS FLAG'}}</a>
+            </li>
+            <li ng-if="claimFlagService.claimHasFlag(claim, 'duration')">
+              <div class="title">
+                <span class="attention-flag duration"></span>
+                <span class="flag-name">Duration Model Flag</span>
+              </div>
+              <div class="reason">Recent activity on or changes to this feature have increased the estimated duration.</div>
+              <div class="action">Consider whether any actions could move this feature forward.</div>
+              <a class="dispute-flag dispute-flag-duration"
+                ng-click="claimFlagService.disputeFlag(claim, 'duration')">{{claimFlagService.claimFlagDisputed(claim, 'duration')
+                  ? 'FLAG DISPUTED' : 'DISPUTE THIS FLAG'}}</a>
+            </li>
+            <li ng-if="claimFlagService.claimHasFlag(claim, 'lastnote', 'med')">
+              <div class="title">
+                <span class="attention-flag lastnote med"></span>
+                <span class="flag-name">Last Note Model Flag: 60-90 Days</span>
+              </div>
+              <div class="reason">It has been more than 60 days since the last note on this claim.</div>
+              <div class="action">Please ensure any activity on this claim has been recorded in the notes.</div>
+              <a class="dispute-flag dispute-flag-lastnote"
+                ng-click="claimFlagService.disputeFlag(claim, 'lastnote')">{{claimFlagService.claimFlagDisputed(claim, 'lastnote')
+                  ? 'FLAG DISPUTED' : 'DISPUTE THIS FLAG'}}</a>
+            </li>
+            <li ng-if="claimFlagService.claimHasFlag(claim, 'lastnote', 'high')">
+              <div class="title">
+                <span class="attention-flag lastnote high"></span>
+                <span class="flag-name">Last Note Model Flag: 91+ Days</span>
+              </div>
+              <div class="reason">It has been more than 90 days since the last note on this claim.</div>
+              <div class="action">Please review the claim and provide an update on any activity within the notes.</div>
+              <a class="dispute-flag dispute-flag-lastnote"
+                ng-click="claimFlagService.disputeFlag(claim, 'lastnote')">{{claimFlagService.claimFlagDisputed(claim, 'lastnote')
+                  ? 'FLAG DISPUTED' : 'DISPUTE THIS FLAG'}}</a>
+            </li>
+          </ul>
+        </div>
+      </td>
+      <td ng-hide="true">{{claim.litigation}}</td>
+    </tr>
+
+    <tr class="second-heading">
+      <th>Adjuster</th>
+      <th>Insured</th>
+      <th>Note Age</th>
+      <th>Indem</th>
+      <th>Legal</th>
+      <th colspan="2">Updated</th>
+    </tr>
+    <tr>
+      <td class="text-capitalize">{{claim.adjuster_name}}</td>
+      <td class="text-capitalize">{{claim.case.policy.insured_name}}</td>
+      <td>{{claim.age}}d</td>
+      <td>{{claim.indemnity_outstanding | currency}}</td>
+      <td>{{claim.legal_outstanding | currency}}</td>
+      <td colspan="2">{{claim.updated_at | date : 'shortDate' : 'UTC'}}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="claim-detail-content" ng-class="{ 'editing-note': editingNote }">
+  <table class="notes">
+    <tr class="{{claimNoteService.noteClass(detail)}}"
+      ng-repeat="detail in claim.details track by $index"
+      ng-show="canShowDetailItem(detail)"
+      ng-mouseover="setActiveNoteId(detail.id)"
+      ng-mouseout="setActiveNoteId('')">
+
+      <td class="icon">
+        <img ng-src="/assets/{{claimNoteService.noteIcon(detail)}}" ng-if="detail.id">
+        <div class="select-label" ng-if="! detail.id" id="select-label">
+          <ul class="list-unstyled">
+            <li class="follow-up" ng-click="setNoteType(detail, 'follow-up')"
+              ng-class="{active: claimNoteService.noteClass(detail) == 'follow-up'}">Follow up</li>
+            <li class="email" ng-click="setNoteType(detail, 'email')"
+              ng-class="{active: claimNoteService.noteClass(detail) == 'email'}">Email</li>
+            <li class="call" ng-click="setNoteType(detail, 'call')"
+              ng-class="{active: claimNoteService.noteClass(detail) == 'call'}">Call</li>
+          </ul>
+        </div>
+      </td>
+      <td class="message">
+        <div class="edit-note" ng-if="detail.editing">
+          <textarea id="note-text" placeholder="Start typing..." class="no-glow" focus-on-show
+            ng-show="detail.editing"
+            ng-model="detail.diary_edit"
+            ng-model-options="{ updateOn: 'default blur', debounce: { default: 0, blur: 0 } }"
+            ng-keydown="processNoteKeyPress($event, detail)"
+            click-outside="editToggle(detail)"
+            outside-if-not="select-label,save-note,cancel-note"
+            ></textarea>
+            <div class="reminder-help" ng-if="detail.editing && ! detail.id">Space to enter a few comments that remind you what tasks or activities you need to complete when you next touch this claim. E.g., "confirm payment went out," "review with manager," or "call claimant." Please, do NOT enter content that should be included in the official Notes on the claim.</div>
+        </div>
+
+        <div ng-hide="detail.editing">
+          <div class="author-actions">
+            <span class="author text-capitalize">{{claimNoteService.noteAuthor(detail)}}</span>
+            <ul class="list-inline list-unstyled actions" ng-class="{active: activeNoteId === detail.id && ! editingNote}">
+              <li class="email" ng-if="detail.author.email"><a href="mailto:{{detail.author.email}}"><img
+                src="/assets/icon-envelope.svg" width="14" alt="Email Author"></a></li>
+              <li class="edit-note" ng-click="editToggle(detail)"
+                ng-hide="editingNote"
+                ng-if="detail.object_type === 'DiaryNote' && detail.author.email &&
+                detail.author.email === globalDataService.user.email"><img src="/assets/icon-edit.svg" width="14" height="14" alt="Edit Reminder"></li>
+              <li class="delete-note" ng-click="deleteNote(detail)"
+                ng-hide="editingNote"
+                ng-if="detail.object_type === 'DiaryNote' && detail.author.email &&
+                detail.author.email === globalDataService.user.email"><img src="/assets/icon-delete.svg" width="12" height="14" alt="Delete Reminder"></li>
+            </ul>
+          </div>
+          <div class="text">{{showMessage(detail)}}</div>
+        </div>
+      </td>
+      <td class="date">
+        <div class="edit-note-actions" ng-if="detail.editing">
+          <a ng-click="editToggle(detail)" class="save-note" id="save-note">SAVE</a>
+          <a ng-mousedown="cancelEdit(detail)" class="cancel-note" id="cancel-note">cancel</a>
+        </div>
+        <div ng-hide="detail.editing">{{(detail.object_type === 'DiaryNote' || detail.object_type === 'Notification' ? detail.created_at :
+          detail.dashboard_updated_at | cmdate:'MM/dd/yy')}}</div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="claim-detail-footer">
+  <a ng-class="{active: detailPane === 'all'}"
+    ng-click="detailPane = 'all'">All</a>
+  <a ng-class="{active: detailPane === 'reminders'}"
+    ng-click="detailPane = 'reminders'">Reminders</a>
+  <a ng-class="{active: detailPane === 'notes'}"
+    ng-click="detailPane = 'notes'">Notes</a>
+<!--   <a ng-class="{active: detailPane === 'notifications'}"
+    ng-click="detailPane = 'notifications'">Notifications</a> -->
+  <a class="pull-right" ng-if="! claim.force_closed"
+    ng-click="closeClaim($event)">Mark as Closed</a>
+  <a class="pull-right" ng-if="claim.force_closed"
+    ng-click="reopenClaim($event)">Reopen</a></span>
+</div>

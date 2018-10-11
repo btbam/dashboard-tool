@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="27px" height="27px" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval 41 + Imported Layers</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.179517663 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="reminder-clicked-new" sketch:type="MSArtboardGroup" transform="translate(-261.000000, -59.000000)">
+            <g id="Oval-41-+-Imported-Layers" sketch:type="MSLayerGroup" transform="translate(264.000000, 61.000000)">
+                <circle id="Oval-41" fill="#FFFFFF" filter="url(#filter-1)" sketch:type="MSShapeGroup" cx="10.5" cy="10.5" r="10.5"></circle>
+                <path d="M14.7736143,13.4524342 L11.9891801,10.668 L14.7736143,7.88356584 L13.4524342,6.56238569 L10.668,9.34681985 L7.88356584,6.56238569 L6.56249251,7.88345901 L9.34692667,10.6678932 L6.56238569,13.4524342 L7.88356584,14.7736143 L10.6681068,11.9890733 L13.452541,14.7735075 L14.7736143,13.4524342 L14.7736143,13.4524342 Z" id="Imported-Layers" fill="#F27171" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

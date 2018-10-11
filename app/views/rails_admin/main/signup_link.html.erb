@@ -1,0 +1,32 @@
+<%
+body_lines = [
+  "Hello #{@object.name_first} -",
+  "",
+  "Here are your instructions for setting up your Dashboard and how to sign in:.",
+  "1) First visit this link to sign into your account using IE 8 (or higher) or Chrome",
+  "#{request.protocol}#{request.host_with_port}/?authentication_token=#{@object.authentication_token}",
+  "(this link is unique to you, please do not share or forward it)",
+  "2) You should automatically be logged into Dashboard on that browser and see the Dashboard dashboard. Please note, during the initial sign in, the dashboard may take some extra time to reload.",
+  "3) To access Dashboard in the future, just go to this link using IE 8 (or higher) or Chrome",
+  "#{request.protocol}#{request.host_with_port}",
+  "and you will automatically be logged in and taken to the Dashboard dashboard."
+]
+
+body_lines += [
+  "",
+  "Please note that as an executive, your initial dashboard shows a sample of the 500 latest claims- you can use the controls in the upper right to drill down to see more. Only executives can see/select Handling Offices and Managers"
+] if @object.executive?
+
+body_lines += [
+  "If you have any questions or feedback, please feel free to contact dashboard@dashboard.com",
+  "",
+  "Best,",
+  "The Dashboard Team"
+]
+
+body = body_lines.join('%0D')
+%>
+
+<%=
+link_to 'Send Activiation Email', "mailto:#{@object.email}?subject=Dashboard 2.0 Sign In !!!DO NOT SHARE/FWD!!!&body=#{body}"
+%>

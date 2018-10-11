@@ -1,0 +1,4 @@
+resque:
+  ScheduledCacheWarm:
+    cron: "45 10 * * *"
+    queue: high

@@ -1,0 +1,128 @@
+@import 'globals.css.scss';
+
+#sidebar {
+  z-index:920;
+  background:#fff;
+  width:$sidebar-width;
+  height:calc(100% - $header-height);
+  overflow-x:hidden;
+  position:fixed;
+  top:$header-height;
+  bottom:$footer-height;
+  left:0;
+  @include transition(left .75s ease);
+  @include box-shadow(0px, -2px, 6px, 0px, rgba(183,183,183,0.60));
+  overflow-y:scroll;
+
+  &.closed {
+    left:-$sidebar-width;
+  }
+
+  ul {
+    margin-top:9px;
+    font-size:14px;
+    color:#4A4A4A;
+    list-style-type:none;
+
+    li {
+      background-position:25px center;
+      background-repeat:no-repeat;
+      padding:12px 0 12px 64px;
+      cursor:pointer;
+
+      &.active {
+        background-color:#ecf2f4;
+        color:#4A4A4A;
+        font-weight:$font-medium;
+      }
+
+      &.calendar {
+        background-image:asset-url('icon-calendar.svg');
+        color:#4A4A4A;
+        background-position:25px 12px;
+        margin-bottom:-15px;
+        cursor:auto;
+      }
+      &.dashboard {
+        background-image:asset-url('icon-dashboard.svg');
+        color:#4A4A4A;
+      }
+      &.all-claims {
+        background-image:asset-url('icon-all-claims.svg');
+        color:#4A4A4A;
+
+        img {
+          margin:6px 12px 0 0;
+          vertical-align:middle;
+        }
+      }
+      &.divider {
+        cursor:auto;
+        padding:0;
+        margin:12px 0;
+        border-bottom:1px solid #E5E5E5;
+      }
+      &.past-due {
+        background-image:asset-url('icon-past-due.svg');
+      }
+      &.no-due-date {
+        background-image:asset-url('icon-no-due-date.svg');
+      }
+      &.new {
+        background-image:asset-url('icon-new-claim-off.svg');
+      }
+      &.notification {
+        background-image:asset-url('icon-notification-off.svg');
+      }
+      &.email {
+        background-image:asset-url('icon-label-email-off.svg');
+      }
+      &.call {
+        background-image:asset-url('icon-label-call-off.svg');
+      }
+      &.follow-up {
+        background-image:asset-url('icon-label-follow-up-off.svg');
+      }
+      &.duration {
+        background-image:asset-url('icon-duration-flag.svg');
+      }
+      &.touch {
+        background-image:asset-url('icon-touch-flag.svg');
+      }
+      &.manager-adjuster {
+        padding-left:25px;
+
+        select {
+          color:#4a4a4a;
+          border:1px solid #ccc;
+          height:25px;
+        }
+      }
+      &.week-month {
+        padding:0 0 0 25px;
+
+        select {
+          color:#4a4a4a;
+          border:1px solid #ccc;
+          height:25px;
+        }
+      }
+      &.lastnote-low {
+        background-image:asset-url('icon-priority-low.svg');
+      }
+      &.lastnote-med-low {
+        background-image:asset-url('icon-priority-med-low.svg');
+      }
+      &.lastnote-med {
+        background-image:asset-url('icon-priority-med-high.svg');
+      }
+      &.lastnote-high {
+        background-image:asset-url('icon-priority-high.svg');
+      }
+      &.closed {
+        background-image:asset-url('icon-closed.svg');
+        background-position:26px 15px;
+      }
+    }
+  }
+}

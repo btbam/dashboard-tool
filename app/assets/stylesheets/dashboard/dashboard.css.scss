@@ -1,0 +1,200 @@
+@import 'globals.css.scss';
+
+#dashboard {
+  position:fixed;
+  left:$claim-detail-padding;
+  top:$header-height;
+  bottom:0;
+  right:0;
+  z-index:880;
+  @include transition(left .75s ease, top .5s ease);
+  color:#4a4a4a;
+  overflow-y:scroll;
+  padding:15px $claim-detail-padding 15px 0;
+
+  &.off {
+    top:100%;
+  }
+
+  &.with-sidebar {
+    left:$sidebar-width + $claim-detail-padding;
+  }
+
+  h2 {
+    font-weight:$font-regular;
+    background:#fff;
+    font-size:18px;
+    margin:0;
+    padding:10px 20px;
+    border-bottom:1px solid #f4f8f9;
+  }
+
+  #widget-summary {
+    margin-bottom:10px;
+
+    table.stats {
+      background:#fff;
+      width:100%;
+      font-size:14px;
+
+      td {
+        width:25%;
+        padding:50px 20px 40px 20px;
+        text-align:center;
+        border-right:1px solid #f4f8f9;
+        position:relative;
+
+        &:last-child {
+          border:none;
+        }
+
+        &.clickable {
+          cursor:pointer;
+        }
+        .count {
+          font-size:48px;
+        }
+
+        .lbl {
+          font-size:14px;
+        }
+      }
+    }
+  }
+
+  #widget-lastnote {
+    background:#fff;
+    margin-bottom:10px;
+
+    table.lastnote {
+      width:100%;
+
+      td {
+        vertical-align:top;
+        padding:20px 30px 10px 20px;
+
+        &:last-child {
+          padding-right:15px;
+        }
+      }
+
+      select {
+        color:#4a4a4a;
+        border:1px solid #ccc;
+        height:25px;
+        display:block;
+        margin-bottom:32px;
+      }
+
+      table.stats {
+        width:auto;
+
+        tr {
+          cursor:pointer;
+          
+          &.lastnote-low td.lbl {
+            background-image:asset-url('icon-priority-low.svg');
+          }
+          &.lastnote-med-low td.lbl {
+            background-image:asset-url('icon-priority-med-low.svg');
+          }
+          &.lastnote-med td.lbl {
+            background-image:asset-url('icon-priority-med-high.svg');
+          }
+          &.lastnote-high td.lbl {
+            background-image:asset-url('icon-priority-high.svg');
+          }
+        }
+
+        td {
+          padding:0 0 14px 0;
+          background-repeat:no-repeat;
+          &.lbl {
+            padding:0 20px 0 30px;
+            font-size:14px;
+            white-space:nowrap;
+          }
+          &.count {
+            text-align:right;     
+          }
+        }
+      }
+    }
+
+    histogram {
+      cursor:pointer;
+    }
+
+    #lastnote-low svg .bar {
+      fill:#7CD290;
+    }
+    #lastnote-med-low svg .bar {
+      fill:#E5DF5E;
+    }
+    #lastnote-med svg .bar {
+      fill:#FDBA4F;
+    }
+    #lastnote-high svg .bar {
+      fill:#EA7373;
+    }
+  }
+
+  #widget-flags {
+    table.stats {
+      width:100%;
+      background:#fff;
+
+      div.lbl-block {
+        position:absolute;
+        top:55px;
+        left:50%;
+        width:50px;
+        margin-left:-25px;
+      }
+
+      .graph-container {
+        position:relative;
+        margin:20px;
+      }
+
+      .count {
+        font-weight:$font-light;
+        font-size:19px;
+      }
+
+      .lbl {
+        font-size:11px;
+      }
+
+      h2 {
+        text-align:left;    
+      }
+
+      td {
+        cursor:pointer;
+        text-align:center;
+        width:33%;
+        border-right:10px solid #f4f8f9;
+
+        &:last-child {
+          border:none;
+        }
+      }
+    }
+
+    radial-graph {
+      margin-top:10px;
+
+      svg {
+        width:160px;
+        height:160px;
+      }
+
+      .fillArc1 {
+        stroke:#63B5F6;
+      }
+    }
+
+
+  }
+}

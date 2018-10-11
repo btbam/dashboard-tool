@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>icon snooze</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="icon-snooze" sketch:type="MSLayerGroup">
+            <path d="M8.904,1.16928 C13.17624,1.16928 16.63872,4.63176 16.63872,8.904 C16.63872,13.17624 13.174896,16.63872 8.904,16.63872 C4.63176,16.63872 1.16928,13.174896 1.16928,8.904 C1.16928,4.63176 4.63176,1.16928 8.904,1.16928 L8.904,1.16928 Z M8.904,0.188832 C6.57552,0.188832 4.387824,1.096032 2.74176,2.74176 C1.096032,4.387824 0.188832,6.57552 0.188832,8.904 C0.188832,11.23248 1.096032,13.420176 2.74176,15.06624 C4.387824,16.711968 6.576864,17.619168 8.904,17.619168 C11.23248,17.619168 13.420176,16.711968 15.06624,15.06624 C16.711968,13.420176 17.619168,11.23248 17.619168,8.904 C17.619168,6.57552 16.711968,4.387824 15.06624,2.74176 C13.420176,1.096032 11.23248,0.188832 8.904,0.188832 L8.904,0.188832 Z" id="Fill-1" fill="#FFC107" sketch:type="MSShapeGroup"></path>
+            <path d="M8.904,2.806272 L8.904,8.904 L11.619552,11.619552" id="Stroke-2" stroke="#FFC107" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

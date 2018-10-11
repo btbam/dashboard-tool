@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="6px" height="24px" viewBox="0 0 6 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="edit-diary" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="claim-v3.0-edit-text" sketch:type="MSArtboardGroup" transform="translate(-1527.000000, -113.000000)" fill="#FFF">
+            <path d="M1521,128 C1522.65685,128 1524,126.656854 1524,125 C1524,123.343146 1522.65685,122 1521,122 C1519.34315,122 1518,123.343146 1518,125 C1518,126.656854 1519.34315,128 1521,128 Z M1530,128 C1531.65685,128 1533,126.656854 1533,125 C1533,123.343146 1531.65685,122 1530,122 C1528.34315,122 1527,123.343146 1527,125 C1527,126.656854 1528.34315,128 1530,128 Z M1539,128 C1540.65685,128 1542,126.656854 1542,125 C1542,123.343146 1540.65685,122 1539,122 C1537.34315,122 1536,123.343146 1536,125 C1536,126.656854 1537.34315,128 1539,128 Z" id="Oval-Copy" sketch:type="MSShapeGroup" transform="translate(1530.000000, 125.000000) rotate(-90.000000) translate(-1530.000000, -125.000000) "></path>
+        </g>
+    </g>
+</svg>

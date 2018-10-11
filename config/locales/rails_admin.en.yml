@@ -1,0 +1,13 @@
+en:
+  admin:
+    actions:
+      signup_link:
+        title: "Send Email to %{object_label}"
+        menu: "Send Email"
+        breadcrumb: "Send Email"
+        link: "Send activation email to this %{model_label}"
+      ops_dashboard:
+        title: 'OPS'
+        menu: 'OPS'
+        breadcrumb: 'OPS'
+        link: 'OPS'

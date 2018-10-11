@@ -1,0 +1,409 @@
+@import 'globals.css.scss';
+
+#claim-detail {
+  position:fixed;
+  left:$claim-detail-padding;
+  right:$claim-detail-padding;
+  background:#fff;
+  top:$header-height;
+  z-index:870;
+  bottom:0;
+  @include transition(left .75s ease, top .5s ease);
+  @include box-shadow (0px, 2px, 5px, 0px, rgba(0,0,0,0.37));
+
+  &.with-sidebar {
+    left:$sidebar-width + $claim-detail-padding;
+    right:$claim-detail-padding;
+
+    .claim-detail-header, .claim-detail-footer, .claim-detail-content {
+      left:$sidebar-width + $claim-detail-padding;
+    }
+  }
+
+  .close-detail {
+    position:absolute;
+    z-index:880;
+    top:16px;
+    left:21px;
+    cursor:pointer;
+  }
+
+  .reminder-container {
+    padding:13px 20px 0 20px;
+    height:110px;
+    position:absolute;
+    z-index:865;
+    top:$claim-detail-header-height;
+    left:0;
+    background-image: linear-gradient(-180deg, #FFFFFF 85%, rgba(255,255,255,0.30) 100%);
+    width:calc(100% - 20px);
+
+    &.editing-note {
+      height:60px;
+    }
+
+    .due-date-container {
+      white-space:nowrap;
+      height:36px;
+      line-height:34px;
+      cursor:pointer;
+      color:#000;
+      font-size:14px;
+      display:inline-block;
+      background:#FFF;
+      border:1px solid #D3DAE6;
+      @include box-shadow(0px, 1px, 2px, 0px, rgba(0,0,0,0.20));
+      padding:0 10px;
+      vertical-align:top;
+
+      .due-date-label {
+        padding-left:8px;
+      }
+
+      .due-date {
+        padding-right:8px;
+      }
+
+      &.past-due {
+        color:#fff;
+        background-color:#FD8687;
+      }
+    }
+
+    .date-picker {
+      @include box-shadow(0px, 1px, 2px, 0px, rgba(0,0,0,0.20));
+      background:#fff;
+      border:1px solid #D3DAE6;
+      @include box-shadow(0px, 1px, 2px, 0px, rgba(0,0,0,0.20));
+      position:absolute;
+      top:48px;
+      left:20px;
+      b
+
+      input.due-date {
+        visibility:hidden;
+        display:none;
+      }
+
+      .calendar {
+        padding:10px;
+
+        .btn-default {
+          border:none;
+        }
+
+        * {
+          outline: none;
+          -webkit-box-shadow: none !important;
+          -moz-box-shadow: none !important;
+          box-shadow: none !important;
+        }
+      }
+
+      div.update-all {
+        padding:0 19px;
+        margin-bottom:15px;
+        overflow:auto;
+
+        label {
+          font-size:12px;
+          margin-left:5px;
+        }
+
+        div.checkbox-wrapper {
+          float:left;
+          margin-top:5px;
+        }
+
+        button {
+          float:right;
+        }
+      }
+
+    }
+
+    .add-reminder {
+      cursor:pointer;
+      display:block;
+      width:170px;
+      margin-top:10px;
+      opacity:1;
+      @include transition(opacity .25s ease);
+
+      &.off {
+        opacity:0;
+      }
+    }
+  }
+
+  .select-label {
+    color:#999;
+    font-size:14px;
+
+    ul {
+      li {
+        color:#4A4A4A;
+        background-repeat:no-repeat;
+        background-position:10px center;
+        padding:6px 10px 6px 34px;
+        cursor:pointer;
+        white-space:nowrap;
+
+        &.active {
+          background-color:#E7E7E7;
+        }
+
+        &.email {
+          background-image:asset-url('icon-label-email-off.svg');
+        }
+        &.call {
+          background-image:asset-url('icon-label-call-off.svg');
+        }
+        &.follow-up {
+          background-image:asset-url('icon-label-follow-up-off.svg');
+        }
+      }
+    }
+  }
+
+  .claim-detail-header {
+    padding:15px 37px 15px 78px;
+    background:#f9f9f9;
+    position:fixed;
+    z-index:870;
+    top:$header-height;
+    height:$claim-detail-header-height;
+    left:$claim-detail-padding;
+    right:$claim-detail-padding;
+    @include transition(left .75s ease, top .5s ease);
+    @include box-shadow(0px, 2px, 5px, 0px, rgba(0,0,0,0.08));
+
+    .attention-flag {
+      cursor:pointer;
+      margin-top:-2px;
+    }
+
+    #flag-detail {
+      background: #FFFFFF;
+      @include box-shadow(0px, 2px, 5px, 0px, rgba(0,0,0,0.31));
+      width:429px;
+      padding:24px 24px 4px 48px;
+      height:auto;
+      position:absolute;
+      top:58px;
+      right:16px;
+      z-index:9999999999;
+      font-size:12px;
+      color:#4a4a4a;
+      line-height:14px;
+      white-space:normal;
+      @include border-radius(2px);
+
+      li {
+        margin-bottom:20px;
+      }
+
+      .title {
+        margin-bottom:8px;
+      }
+      .attention-flag {
+        position:absolute;
+        left:20px;      
+      }
+      .reason {
+        margin-bottom:8px;
+      }
+      .action {
+        margin-bottom:8px;
+      }
+      .dispute-flag {
+        display:block;
+        text-align:right;
+        color:#FD8687;
+        cursor:pointer;
+      }
+    }
+  }
+
+  table.detail {
+    width:100%;
+
+    th {
+      font-weight:$font-bold;
+      font-size: 10px;
+      color:#6c6c6c;
+    }
+
+    td {
+      font-size:14px;
+      color:#313131;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      padding-right:30px;
+    }
+
+    tr.second-heading th {
+      padding-top:15px;
+    }
+  }
+
+  .claim-detail-content {
+    overflow-y:scroll;
+    position:fixed;
+    top:$header-height + $claim-detail-header-height + 30px;
+    bottom:$claim-detail-footer-height;
+    left:$claim-detail-padding;
+    right:$claim-detail-padding;
+    @include transition(left .75s ease, top .5s ease);
+    padding-top:70px;
+
+    &.editing-note {
+      top:$header-height + $claim-detail-header-height - 10px;
+    }
+
+    table.notes {
+      width:100%;
+      margin-top:10px;
+
+      tr {
+        td {
+          vertical-align:top;
+
+          &.icon {
+            padding:0 30px 0 24px;
+
+            img {
+              margin-left:10px;
+            }
+          }
+          &.message {
+            width:100%;
+            padding:0 30px 15px 0;
+
+            div.author-actions {
+              line-height:15px;
+
+              span.author {
+                font-weight:$font-bold;
+                font-size:12px;
+                color:#4A4A4A;
+                padding-right:10px;
+              }
+
+              ul.actions {
+                display:inline;
+                opacity:0;
+                @include transition(opacity .5s ease);
+
+                &.active {
+                  opacity:1;
+                }
+
+                li {
+                  padding:0 3px;
+
+                  &.email {
+                    padding-right:6px;
+
+                    img {
+                      margin-top:-3px;
+                    }
+                  }
+                }
+
+                img {
+                  cursor:pointer;
+                  display:inline-block;
+                  margin-top:-4px;
+                }
+              }
+            }
+
+            .text {
+              font-size:14px;
+              color:#4a4a4a;
+              white-space:pre-wrap;
+            }
+          }
+
+          &.date {
+            padding:15px 15px 15px 0;
+            color:#4a4a4a;
+            text-align:right;
+            font-size:12px;
+            white-space:nowrap;
+          }
+        }
+      }
+
+      div.edit-note {
+        textarea {
+          color:#4a4a4a;
+          border:1px solid #eee;
+          width:100%;
+          height:100px;
+        }
+      }
+
+      div.reminder-help {
+        padding:5px 20px 10px 20px;
+        font-size: 12px;
+        color: #AEB7C7;
+        letter-spacing: 0.2px;
+        line-height: 15px;
+      }
+
+      div.edit-note-actions {
+        .save-note {
+          display:block;
+          cursor:point;
+          background:#3E82F7;
+          @include border-radius(2px);
+          font-weight:$font-medium;
+          font-size:14px;
+          color:#fff;
+          line-height:16px;
+          width:70px;
+          padding:5px 17px;
+          margin-bottom:10px;
+          text-align:center;
+        }
+        .cancel-note {
+          cursor:pointer;
+          color:#999;
+          font:12px;
+        }
+      }
+    }
+  }
+
+  .claim-detail-footer {
+    background: rgba(242,242,242,0.48);
+    @include box-shadow(0px, 0px, 2px, 0px, rgba(0,0,0,0.15));
+    font-size:14px;
+    border-top:1px solid #f2f2f2;
+    padding:0 25px 0 76px;
+    position:fixed;
+    bottom:0;
+    height:$claim-detail-footer-height;
+    line-height:$claim-detail-footer-height;
+    left:$claim-detail-padding;
+    right:$claim-detail-padding;
+    @include transition(left .75s ease, top .5s ease);
+
+    a {
+      cursor:pointer;
+      color: #999;
+      margin-right:38px;
+
+      &:last-child {
+        margin-right:0;
+      }
+
+      &.active {
+        color:#3E82F7;
+      }
+    }
+  }
+}
+

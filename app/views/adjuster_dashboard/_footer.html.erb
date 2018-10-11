@@ -1,0 +1,25 @@
+<script type="text/ng-template" id="last-updated.html">
+  <div class="last-updated">Updated:
+    {{ <%= ImporterRun.last_update.to_datetime.strftime('%Q') %> | date: 'MM/dd/yy h:mm a' }}
+  </div>
+</script>
+
+<script type="text/ng-template" id="legal-disclaimer.html">
+  <div class="legal-disclaimer">Dashboard is a tool designed to assist the adjuster in the handling of claims and is not a substitute for the professional judgment of the adjuster. The Dashboard tool does not replace, alter, or measure compliance with any existing legal or regulatory requirements.
+  </div>
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  <% if ENV['HEAP_ID'] %>
+    window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load('<%= ENV['HEAP_ID'] %>');
+
+    <% if user_signed_in? %>
+      heap.identify({
+        name: "<%= escape_javascript(current_user.name_first + ' ' + current_user.name_last) %>",
+        email: "<%= escape_javascript(current_user.email) %>",
+        app_user_id: "<%= current_user.id %>"
+      });
+    <% end %>
+  <% end %>
+</script>

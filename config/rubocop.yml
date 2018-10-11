@@ -1,0 +1,54 @@
+AllCops:
+  Exclude:
+    - 'config/**/*'
+    - 'cookbooks/**/*'
+    - 'db/**/*'
+    - 'db_oracle/**/*'
+    - 'frontend/**/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'lib/tasks'
+    - 'tmp/**/*'
+    - 'vagrant/**/*'
+    - 'Vagrantfile'
+    - 'vendor/**/*'
+    - 'nagios/**/*'
+    - 'lib/tasks/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'
+    - 'app/services/note_processor.rb'
+    - 'app/services/login_report.rb'
+    - 'app/api/nagios_monitoring.rb'
+    - 'app/services/invite_user.rb'
+    - 'app/serializers/nagios_alert_serializer.rb'
+    - 'app/models/importer_run.rb'
+    - 'app/importers/**/*'
+    - 'app/models/dashboard_model.rb'
+    - 'app/models/scheduled_cache_warm.rb'
+    - 'lib/rails_admin/ops_dashboard.rb'
+  RunRailsCops: true
+  DisplayCopNames: true
+
+IndentationConsistency:
+  Exclude:
+    - config/unicorn.rb
+
+LineLength:
+  Max: 120
+
+ClassLength:
+  Max: 150
+  Exclude:
+    - app/models/feature.rb
+
+MethodLength:
+  Enabled: false
+
+EndOfLine:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Documentation:
+  Enabled: false

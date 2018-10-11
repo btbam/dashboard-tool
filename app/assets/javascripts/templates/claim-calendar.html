@@ -1,0 +1,34 @@
+<div class="calendar">
+  <div class="calendar-header">
+    <span class="month">{{ currentMonth.format('MMM YYYY') }}</span>
+
+    <span class="calendar-controls">
+      <a class="decrement-month"
+        ng-click="decrementCurrentMonth()"><img src="/assets/icon-cal-left.svg" height="19" alt="Previous Month"></a>
+      <a class="today"
+        ng-click="setToday()" class="today"><img src="/assets/icon-cal-today.svg" height="19" alt="Today"></a>
+      <a class="increment-month"
+        ng-click="incrementCurrentMonth()"><img src="/assets/icon-cal-right.svg" height="19" alt="Next Month"></a>
+    </span>
+  </div>
+
+  <table class="calendar">
+    <thead>
+      <tr>
+        <td ng-repeat="weekday in weekdays">{{weekday}}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="weekRow in weekRows">
+        <td
+          ng-repeat="day in weekRow"
+          ng-class="{'in-month': inMonth(day), selected: isSelectedDay(day),
+            today: isToday(day), 'no-click': getClaimCount(day) < 1 }"
+          ng-click="setSelectedDay(day)">
+            <div class="day">{{ day.format('D') }}</div>
+            <div class="claim-count" ng-if="getClaimCount(day) > 0">{{getClaimCount(day)}}</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

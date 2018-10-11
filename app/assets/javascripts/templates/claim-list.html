@@ -1,0 +1,58 @@
+<div id="claim-list-constrainer" ng-if="globalDataService.filteredClaims.length">
+  <table class="claim-list" ng-class="{ 'sort-asc': globalDataService.sortAscending }">
+    <thead>
+      <tr>
+        <th ng-repeat="column in globalDataService.columns"
+          class="{{ column.name }}"
+          ng-show="globalDataService.columnVisible(column.name)"
+          ng-class="{sort: globalDataService.sortColumn === column.name}"
+          ng-click="tableSortClick(column.name)"><span>{{ column.display }}</span></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="claim {{ claim.type }}"
+        ng-click="rowClick(claim, $event)"
+        ng-repeat="claim in globalDataService.filteredClaims track by $index">
+
+        <td class="claim_id">{{ claim.claim_id }}-{{ claim.feature_id }}</td>
+        <td class="due-date"
+          ng-hide="globalDataService.hiddenColumns.due_date" class="due_date">{{(claim.startsAt | date : 'shortDate' : 'UTC') || 'N/A'}}</td>
+        <td class="flags text-nowrap"
+          ng-show="globalDataService.columnVisible('flags')" class="flags"><span
+          class="flag-count flag-count-{{ claimFlagService.claimFlagCount(claim) }}"></span></td>
+        <td class="age"
+          ng-hide="globalDataService.hiddenColumns.age">{{ claim.age }}d</td>
+        <td class="adjuster text-capitalize"
+          ng-hide="globalDataService.hiddenColumns.adjuster">{{ claim.adjuster_name }}</td>
+        <td class="state text-nowrap"
+          ng-hide="globalDataService.hiddenColumns.state">{{ claim.state }}</td>
+        <td class="claimant text-capitalize"
+          ng-hide="globalDataService.hiddenColumns.claimant">{{ claim.claimant_name }}</td>
+        <td class="insured text-capitalize"
+          ng-hide="globalDataService.hiddenColumns.insured">{{ claim.case.policy.insured_name }}</td>
+        <td class="total_reserve"
+          ng-hide="globalDataService.hiddenColumns.total_reserve">{{ claim.total_outstanding | currency }}</td>
+        <td class="total_paid"
+          ng-hide="globalDataService.hiddenColumns.total_paid">{{ claim.total_paid | currency }}</td>
+        <td class="indem"
+          ng-hide="globalDataService.hiddenColumns.indem">{{ claim.indemnity_outstanding | currency }}</td>
+        <td class="med"
+          ng-hide="globalDataService.hiddenColumns.med">{{ claim.medical_outstanding | currency }}</td>
+        <td class="legal"
+          ng-hide="globalDataService.hiddenColumns.legal">{{ claim.legal_outstanding | currency }}</td>
+        <td class="entry text-nowrap"
+          ng-hide="globalDataService.hiddenColumns.entry"
+          popover="{{claim.title}}"
+          popover-append-to-body="true"
+          popover-enable="claim.title !== '-'"
+          popover-placement="left"
+          popover-trigger="mouseenter">{{ claim.title ? claim.title : '&nbsp;' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="no-results" ng-if="! globalDataService.filteredClaims.length">No results match current criteria.</div>
+
+<ng-include src="'legal-disclaimer.html'"></ng-include>

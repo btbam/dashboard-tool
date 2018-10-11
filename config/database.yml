@@ -1,0 +1,89 @@
+# PostgreSQL. Versions 8.2 and up are supported.
+#
+# Install the pg driver:
+#   gem install pg
+# On OS X with Homebrew:
+#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
+# On OS X with MacPorts:
+#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
+# On Windows:
+#   gem install pg
+#       Choose the win32 build.
+#       Install PostgreSQL and put its /bin directory on your path.
+#
+# Configure Using Gemfile
+# gem 'pg'
+#
+development:
+  adapter: oracle_enhanced
+  pool: 200
+  port: 1621
+  schema:   <%= ENV['CLAIM_DEVELOPMENT_ORACLE_DB_SCHEMA'] %>
+  host:     <%= ENV['CLAIM_DEVELOPMENT_ORACLE_DB_IP'] %>
+  database: <%= ENV['CLAIM_DEVELOPMENT_ORACLE_DB'] %>
+  username: <%= ENV['CLAIM_DEVELOPMENT_ORACLE_DB_USERNAME'] %>
+  password: <%= ENV['CLAIM_DEVELOPMENT_ORACLE_DB_PWD'] %>
+
+staging:
+  adapter: oracle_enhanced
+  pool: 200
+  port: 1621
+  schema:   <%= ENV['CLAIM_STAGING_ORACLE_DB_SCHEMA'] %>
+  host:     <%= ENV['CLAIM_STAGING_ORACLE_DB_IP'] %>
+  database: <%= ENV['CLAIM_STAGING_ORACLE_DB'] %>
+  username: <%= ENV['CLAIM_STAGING_ORACLE_DB_USERNAME'] %>
+  password: <%= ENV['CLAIM_STAGING_ORACLE_DB_PWD'] %>
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  schema_search_path: public
+  pool: 20
+  host: <%= ENV['TEST_POSTGRES_HOST'] %>
+  database: <%= ENV['TEST_POSTGRES_DATABASE'] %>
+  username: <%= ENV['TEST_POSTGRES_USERNAME'] %>
+  password: <%= ENV['TEST_POSTGRES_PASSWORD'] %>
+
+production:
+  adapter: oracle_enhanced
+  pool: 200
+  port: 1621
+  schema:   <%= ENV['CLAIM_PRODUCTION_ORACLE_DB_SCHEMA'] %>
+  host:     <%= ENV['CLAIM_PRODUCTION_ORACLE_DB_IP'] %>
+  database: <%= ENV['CLAIM_PRODUCTION_ORACLE_DB'] %>
+  username: <%= ENV['CLAIM_PRODUCTION_ORACLE_DB_USERNAME'] %>
+  password: <%= ENV['CLAIM_PRODUCTION_ORACLE_DB_PWD'] %>
+
+#
+# Use for data sync
+# Change production to whatever env you are syncing for and comment out the associated block above
+#
+# development:
+#   adapter: oracle_enhanced
+#   pool: 200
+#   port: 1521
+#   schema:   <%= ENV['CLAIM_DEVELOPMENT_POSTGRES_DB_SCHEMA'] %>
+#   host:     <%= ENV['CLAIM_DEVELOPMENT_POSTGRES_HOST'] %>
+#   database: <%= ENV['CLAIM_DEVELOPMENT_POSTGRES_DB'] %>
+#   username: <%= ENV['CLAIM_DEVELOPMENT_POSTGRES_USERNAME'] %>
+#   password: <%= ENV['CLAIM_DEVELOPMENT_POSTGRES_PASSWORD'] %>
+
+# staging:
+#   adapter: oracle_enhanced
+#   pool: 200
+#   port: 1521
+#   schema:   <%= ENV['CLAIM_STAGING_POSTGRES_DB_SCHEMA'] %>
+#   host:     <%= ENV['CLAIM_STAGING_POSTGRES_HOST'] %>
+#   database: <%= ENV['CLAIM_STAGING_POSTGRES_DB'] %>
+#   username: <%= ENV['CLAIM_STAGING_POSTGRES_USERNAME'] %>
+#   password: <%= ENV['CLAIM_STAGING_POSTGRES_PASSWORD'] %>
+
+# production:
+#   adapter: oracle_enhanced
+#   pool: 200
+#   port: 1521
+#   schema:   <%= ENV['CLAIM_PRODUCTION_POSTGRES_DB_SCHEMA'] %>
+#   host:     <%= ENV['CLAIM_PRODUCTION_POSTGRES_HOST'] %>
+#   database: <%= ENV['CLAIM_PRODUCTION_POSTGRES_DB'] %>
+#   username: <%= ENV['CLAIM_PRODUCTION_POSTGRES_USERNAME'] %>
+#   password: <%= ENV['CLAIM_PRODUCTION_POSTGRES_PASSWORD'] %>

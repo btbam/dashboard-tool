@@ -1,0 +1,143 @@
+---
+Attribute:
+  enabled: true
+  exclude:
+    - 'CacheWarmer'
+    - 'NoteProcessor'
+    - 'ReportUser'
+BooleanParameter:
+  enabled: true
+  exclude: []
+ClassVariable:
+  enabled: true
+  exclude: []
+ControlParameter:
+  enabled: true
+  exclude: []
+DataClump:
+  enabled: true
+  exclude: []
+  max_copies: 2
+  min_clump_size: 2
+DuplicateMethodCall:
+  enabled: true
+  exclude:
+    - 'Ability'
+    - 'CacheWarmer'
+    - 'FeatureSerializer#last_adjuster_feature_date'
+    - 'FeatureSerializer#last_adjuster_summary'
+    - 'FeatureSerializer#last_manager_feature_date'
+    - 'FeatureSerializer#last_manager_summary'
+    - 'LoginReport#run_report'
+    - 'NagiosAlertSerializer'
+    - 'NoteProcessor'
+    - 'UserCsv#dashboard_id_from_role_name'
+    - 'ScheduledCacheWarm'
+  max_calls: 1
+  allow_calls: []
+FeatureEnvy:
+  enabled: false
+  exclude: []
+IrresponsibleModule:
+  enabled: false
+  exclude: []
+LongParameterList:
+  enabled: false
+  exclude: []
+  max_params: 3
+  overrides:
+    initialize:
+      max_params: 5
+LongYieldList:
+  enabled: true
+  exclude: []
+  max_params: 3
+ModuleInitialize:
+  enabled: true
+  exclude: []
+NestedIterators:
+  enabled: true
+  exclude:
+    - 'CacheWarmer'
+    - 'Claims#claims_for_adjuster_id'
+    - 'LoginReport'
+    - 'NoteProcessor'
+    - 'NagiosMonitoring'
+  max_allowed_nesting: 1
+  ignore_iterators:
+    - tap
+NilCheck:
+  enabled: true
+  exclude:
+    - 'Ability'
+PrimaDonnaMethod:
+  enabled: true
+  exclude: []
+RepeatedConditional:
+  enabled: true
+  exclude:
+    - 'User'
+    - 'FeatureDates'
+  max_ifs: 2
+TooManyInstanceVariables:
+  enabled: true
+  exclude:
+    - 'CacheWarmer'
+    - 'Feature'
+    - 'NoteProcessor'
+  max_instance_variables: 4
+TooManyMethods:
+  enabled: true
+  exclude: []
+  max_methods: 25
+TooManyStatements:
+  enabled: true
+  exclude:
+    - 'CacheWarmer'
+    - 'initialize'
+    - 'LoginReport'
+    - 'NoteProcessor'
+  max_statements: 15
+UncommunicativeMethodName:
+  enabled: true
+  exclude: []
+  reject:
+    - !ruby/regexp /^[a-z]$/
+    - !ruby/regexp /[0-9]$/
+    - !ruby/regexp /[A-Z]/
+  accept: []
+UncommunicativeModuleName:
+  enabled: true
+  exclude: []
+  reject:
+    - !ruby/regexp /^.$/
+    - !ruby/regexp /[0-9]$/
+  accept: []
+UncommunicativeParameterName:
+  enabled: true
+  exclude: []
+  reject:
+    - !ruby/regexp /^.$/
+    - !ruby/regexp /[0-9]$/
+    - !ruby/regexp /[A-Z]/
+    - !ruby/regexp /^_/
+  accept: []
+UncommunicativeVariableName:
+  enabled: true
+  exclude:
+    - 'Feature'
+    - 'LoginReport'
+    - 'NagiosAlertSerializer'
+    - 'NoteProcessor'
+  reject:
+    - !ruby/regexp /^.$/
+    - !ruby/regexp /[0-9]$/
+    - !ruby/regexp /[A-Z]/
+  accept:
+    - _
+UnusedParameters:
+  enabled: true
+  exclude: []
+UtilityFunction:
+  enabled: false
+  exclude: []

@@ -1,0 +1,81 @@
+<div id="sidebar" ng-class="{closed: !globalDataService.sidebarVisible}">
+
+  <ul class="list-unstyled">
+    <li class="calendar"><claim-calendar></claim-calendar></li>
+
+    <li class="divider"></li>
+
+    <li class="dashboard"
+      ng-class="{active: globalDataService.view === 'dashboard'}"
+      ng-click="globalDataService.showDashboard()">Dashboard</li>
+    <li class="all-claims"
+      ng-class="{active: globalDataService.activeFilter === '' && globalDataService.view === 'inbox'}"
+      ng-click="globalDataService.showInbox()">All Claims ({{globalDataService.filterCounts.open }})</li>
+
+    <li class="past-due"
+      ng-class="{active: globalDataService.activeFilter === 'past-due' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('past-due')">Past Due ({{globalDataService.filterCounts['past-due'] }})</li>
+
+    <li class="no-due-date"
+      ng-class="{active: globalDataService.activeFilter === 'no-due-date' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('no-due-date')">No Due Date ({{globalDataService.filterCounts['no-due-date'] }})</li>
+
+    <li class="divider"></li>
+
+    <li class="email"
+      ng-class="{active: globalDataService.activeFilter === 'email' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('email')">Email ({{globalDataService.filterCounts.email }})</li>
+    <li class="call"
+      ng-class="{active: globalDataService.activeFilter === 'call' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('call')">Call ({{globalDataService.filterCounts.call }})</li>
+    <li class="follow-up"
+      ng-class="{active: globalDataService.activeFilter === 'follow-up' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('follow-up')">Follow up ({{globalDataService.filterCounts['follow-up'] }})</li>
+
+    <li class="divider"></li>
+
+    <li class="manager-adjuster">
+      <select class="no-glow" ng-model="claimNoteService.lastNoteType"
+        ng-change="globalDataService.rebuildCalendar(true)">
+        <option value="">Adjuster / Manager</option>
+        <option value="adjuster">Adjuster</option>
+        <option value="manager">Manager</option>
+      </select>
+    </li>
+
+    <li class="week-month">
+      <select class="no-glow" ng-model="claimNoteService.lastNoteTimeFrame"
+        ng-change="globalDataService.rebuildCalendar(true)">
+        <option value="month">Monthly</option>
+        <option value="week">Weekly</option>
+      </select>
+    </li>
+
+    <li class="lastnote-low"
+      ng-class="{active: globalDataService.activeFilter === 'lastnote-low' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('lastnote-low')">
+        {{ noteSeverityService.label(claimNoteService.lastNoteTimeFrame, 'low') }} Days
+        ({{ globalDataService.filterCounts['lastnote-low'] }})</li>
+   <li class="lastnote-med-low"
+      ng-class="{active: globalDataService.activeFilter === 'lastnote-med-low' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('lastnote-med-low')">
+        {{ noteSeverityService.label(claimNoteService.lastNoteTimeFrame, 'med-low') }} Days
+        ({{ globalDataService.filterCounts['lastnote-med-low'] }})</li>
+   <li class="lastnote-med"
+      ng-class="{active: globalDataService.activeFilter === 'lastnote-med' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('lastnote-med')">
+        {{ noteSeverityService.label(claimNoteService.lastNoteTimeFrame, 'med') }} Days
+        ({{ globalDataService.filterCounts['lastnote-med'] }})</li>
+   <li class="lastnote-high"
+      ng-class="{active: globalDataService.activeFilter === 'lastnote-high' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('lastnote-high')">
+        {{ noteSeverityService.label(claimNoteService.lastNoteTimeFrame, 'high') }} Days
+        ({{ globalDataService.filterCounts['lastnote-high'] }})</li>
+
+    <li class="divider"></li>
+
+    <li class="closed"
+      ng-class="{active: globalDataService.activeFilter === 'closed' && globalDataService.view !== 'dashboard'}"
+      ng-click="globalDataService.setFilter('closed')">Closed Claims ({{globalDataService.filterCounts.closed }})</li>
+  </ul>
+</div>

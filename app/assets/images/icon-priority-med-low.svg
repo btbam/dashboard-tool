@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>medium priority icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="sidebar-hidden" sketch:type="MSArtboardGroup" transform="translate(-577.000000, -103.000000)">
+            <g id="filters---no-sidebar" sketch:type="MSLayerGroup" transform="translate(53.000000, 96.000000)">
+                <g id="medium-priority-icon" transform="translate(524.000000, 7.000000)">
+                    <g id="Rectangle-1-+-L-Copy-+-L-+-!-Copy">
+                        <g id="Rectangle-1-+-L-Copy" fill="#F0E232" sketch:type="MSShapeGroup">
+                            <rect id="Rectangle-1" x="0" y="0" width="17" height="17" rx="2.68421053"></rect>
+                        </g>
+                        <g id="L-+-!-Copy" transform="translate(4.000000, 0.000000)" font-size="14.1666667" font-family="Roboto" fill="#FFFFFF" sketch:type="MSTextLayer" font-weight="420">
+                            <g id="L-+-!">
+                                <text id="L">
+                                    <tspan x="0" y="13.1495845">L</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

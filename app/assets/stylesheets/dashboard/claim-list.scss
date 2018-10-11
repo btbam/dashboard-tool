@@ -1,0 +1,149 @@
+@import 'globals.css.scss';
+
+#claim-list {
+  padding:0 0 0 25px;
+  position:fixed;
+  z-index:800;
+  overflow-y:scroll;
+  top:$header-height;
+  right:0;
+  left:0;
+  bottom:$footer-height;
+  color:#4a4a4a;
+  @include transition(left .75s ease, top .5s ease);
+
+  &.with-sidebar {
+    left:$sidebar-width;
+  }
+
+  #claim-list-constrainer {
+    overflow-x:scroll;
+    height:calc(100% - 25px);
+    background:#fff;
+  }
+
+  thead {
+    display:table-row;
+  }
+
+  th {
+    background:#f4f8f9;
+    font-size:10px;
+    font-weight:$font-bold;
+    color:rgba(74,73,74,0.80);
+    letter-spacing:0.2px;
+    padding:14px 15px;
+    cursor:pointer;
+    white-space:nowrap;
+
+    &.sort {
+      background-color:#eaeeef;
+
+      span {
+        background-image:asset_url('icon-sort-desc.svg');
+      }
+    }
+
+    span {
+      padding-right:10px;
+      background-repeat:no-repeat;
+      background-position:right center;      
+    }
+  }
+
+  tbody {
+    overflow-x:hidden;
+    display: block;
+    height:calc(100vh - 135px);
+  }
+
+  table.claim-list {
+    overflow-y:scroll;
+
+    &.sort-asc {
+      th.sort span {
+        background-image:asset_url('icon-sort-asc.svg');
+      }
+    }
+
+    td {
+      padding:14px 15px;
+      background-repeat:no-repeat;
+      background-position:30px center;
+      overflow:hidden;
+    }
+
+    .claim_id {
+      padding-left:86px;
+      white-space:nowrap;
+      min-width:200px;
+      max-width:200px;
+    }
+
+    .due_date,
+    .age,
+    .flags,
+    .state {
+      min-width:80px;
+      max-width:80px;
+    }
+    .adjuster,
+    .claimant,
+    .insured {
+      min-width:150px;
+      max-width:150px;
+    }
+
+    .total_reserve,
+    .indem {
+      min-width:130px;
+      max-width:130px;
+      text-align:right;
+    }
+
+    .total_paid,
+    .med,
+    .legal {
+      min-width:100px;
+      max-width:100px;
+      text-align:right;
+    }
+
+    .entry {
+      min-width:200px;
+      max-width:200px;
+      text-overflow:ellipsis;
+    }
+
+    tr {
+      vertical-align:middle;
+      background:#fff;
+      border-bottom:1px solid #f4f8f9;
+      font-size:14px;
+      cursor:pointer;
+
+      &.new td.claim_id {
+        background-image:asset-url('icon-new-claim-off.svg');
+      }
+      &.notification td.claim_id {
+        background-image:asset-url('icon-notification-off.svg');
+      }
+      &.reminder td.claim_id {
+        background-image:asset-url('icon-reminder-off.svg');
+      }
+      &.email td.claim_id {
+        background-image:asset-url('icon-label-email-off.svg');
+      }
+      &.call td.claim_id {
+        background-image:asset-url('icon-label-call-off.svg');
+      }
+      &.follow-up td.claim_id {
+        background-image:asset-url('icon-label-follow-up-off.svg');
+      }
+    }
+  }
+
+  .no-results {
+    margin-top:21px;
+  }
+}

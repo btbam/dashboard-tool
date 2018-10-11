@@ -1,0 +1,2 @@
+module AdjusterDashboardHelper
+end

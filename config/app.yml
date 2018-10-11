@@ -1,0 +1,16 @@
+defaults: &defaults
+    APP_TIMEZONE: UTC
+    CACHING_NAMESPACE_KEY: alpha
+
+development:
+    <<: *defaults
+
+production:
+    <<: *defaults
+
+staging:
+    APP_TIMEZONE: UTC
+    CACHING_NAMESPACE_KEY: staging
+
+test:
+    <<: *defaults

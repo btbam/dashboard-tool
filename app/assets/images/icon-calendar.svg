@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>vacation</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="20" height="20" rx="4"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="reminder-clicked-old-copy-3" sketch:type="MSArtboardGroup" transform="translate(-1029.000000, -17.000000)">
+            <g id="vacation" sketch:type="MSLayerGroup" transform="translate(1029.000000, 17.000000)">
+                <mask id="mask-2" sketch:name="Rectangle 62" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Rectangle-62" fill="#DDE8EE" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                <rect id="Rectangle-63" fill="#B0C6E3" sketch:type="MSShapeGroup" mask="url(#mask-2)" x="0" y="0" width="20" height="4.05405405" rx="4"></rect>
+                <g id="Group" mask="url(#mask-2)" sketch:type="MSShapeGroup">
+                    <g transform="translate(1.621622, 6.756757)">
+                        <circle id="Oval-57" fill="#F0F5F8" cx="15.4054054" cy="8.91891892" r="1.35135135"></circle>
+                        <circle id="Oval-56" fill="#F0F5F8" cx="10.5405405" cy="8.91891892" r="1.35135135"></circle>
+                        <circle id="Oval-55" fill="#F0F5F8" cx="5.94594595" cy="8.91891892" r="1.35135135"></circle>
+                        <circle id="Oval-54" fill="#F0F5F8" cx="1.35135135" cy="8.91891892" r="1.35135135"></circle>
+                        <circle id="Oval-53" fill="#F0F5F8" cx="15.4054054" cy="5.13513514" r="1.35135135"></circle>
+                        <circle id="Oval-52" fill="#C1D4DF" cx="10.5405405" cy="5.13513514" r="1.35135135"></circle>
+                        <circle id="Oval-51" fill="#F0F5F8" cx="5.94594595" cy="5.13513514" r="1.35135135"></circle>
+                        <circle id="Oval-50" fill="#F0F5F8" cx="1.35135135" cy="5.13513514" r="1.35135135"></circle>
+                        <circle id="Oval-59" fill="#F0F5F8" cx="15.4054054" cy="1.35135135" r="1.35135135"></circle>
+                        <circle id="Oval-48" fill="#F0F5F8" cx="10.5405405" cy="1.35135135" r="1.35135135"></circle>
+                        <circle id="Oval-58" fill="#F0F5F8" cx="5.94594595" cy="1.35135135" r="1.35135135"></circle>
+                        <circle id="Oval-47" fill="#F0F5F8" cx="1.35135135" cy="1.35135135" r="1.35135135"></circle>
+                    </g>
+                </g>
+                <path d="M10.6941474,14.0507936 C12.6929681,14.9994182 15.3997801,12.1631603 14.2886929,11.0211677 C14.8345384,12.0208537 13.408038,14.3667188 10.8909572,13.4771431 C9.48852537,12.9681231 9.69586804,10.3473352 13.5071791,9.77598449 C9.44119786,9.74628313 8.59348609,13.0538363 10.6941474,14.0507936 L10.6941474,14.0507936 Z" id="Path-65" fill="#EA9496" sketch:type="MSShapeGroup" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

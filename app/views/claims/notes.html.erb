@@ -1,0 +1,61 @@
+<div id='notes-container' class='container' ng-controller='NotesCtrl' data-feature-id='<%= @feature.id %>'>
+<h1>
+  <%= link_to 'Dashboard', root_path(), :class => 'subtle' %>&raquo;
+  Claim <%= @feature.claim_id %> &raquo;
+  Notes (<%= @notes.count %>)
+</h1>
+
+<div class='row'>
+  <div class='col-md-6'>
+    <p>
+      <strong>Claimant:</strong> <%= @feature.claimant_name_humanize %><br />
+      <strong>Insured:</strong> <%= @feature.case && @feature.case.policy ? @feature.case.policy.insured_name_humanize : 'N/A' %><br />
+      <strong>Diary Date:</strong>
+      <input is-open='claim.openedDatePicker' ng-model='claim.diary_note.due_date' datepicker-popup='MM/dd/yy' ng-change='saveDiaryNote()'></input>
+      <a href='#' ng-click='openDatePicker($event, claim)'><i class='fa fa-calendar'></i></a>
+    </p>
+  </div>
+  <div class='col-md-6'>
+    <div ng-show='claim'>
+      <p>Analytics Results: {{priorityLabel}} priority</p>
+      <div class='row'>
+        <div class='col-md-1'>
+          <strong>Why:</strong>
+        </div>
+        <div class='col-md-11'>
+          <ul>
+            <li>Most Recent note {{claim.daysSinceLastNote}} days ago</li>
+          </ul>
+        </div>
+      </div>
+      <p>
+        <strong>Feedback:</strong>
+        <button class='btn btn-danger' ng-click='openFeedback()'><i class='fa fa-thumbs-o-down'></i></button>
+        <p class='text-success' ng-show='showSuccess'>Feedback saved!</p>
+      </p>
+    </div>
+  </div>
+</div>
+
+<% @notes.order(dashboard_updated_at: :desc).each do |note| %>
+<div class='row note' data-note-id='<%= note.id %>' >
+  <div class='col-md-12'>
+    <h4>
+      <%= note.dashboard_updated_at.to_formatted_s(:long) %><% unless note.note_title.blank? then %>: <i><%= note.note_title %></i><% end %>
+      <% if note.author %>
+        <span class='pull-right'>
+          <i class='fa fa-user'></i>
+          <%= note.author.name.titleize if note.author.name %>
+          <% unless note.author.email.blank? %>
+            <a href='mailto:<%= note.author.email %>' title='Compose Email in Outlook'><i class='fa fa-envelope-o'></i></a>
+          <% end %>
+        </span>
+      <% end %>
+    </h4>
+
+    <hr />
+    <p><%= note.human_message %></p>
+</div>
+</div>
+<% end %>
+</div>

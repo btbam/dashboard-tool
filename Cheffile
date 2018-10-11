@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'certified' if Gem.win_platform?
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'apt'
+cookbook 'build-essential'
+cookbook 'git'
+cookbook 'ruby_build', git: 'https://github.com/fnichol/chef-ruby_build'
+cookbook 'vim'
+cookbook 'memcached'
+cookbook 'redis', git: 'https://github.com/phlipper/chef-redis'

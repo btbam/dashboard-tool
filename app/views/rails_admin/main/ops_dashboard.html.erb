@@ -1,0 +1,29 @@
+<% if @results %>
+  <h4>Previous Command</h4>
+  <pre><%= @previous_command %></pre>
+  <h4>Command Results</h4>
+  <pre><%= @results %></pre>
+<% end %>
+
+<h4>Commands</h4>
+<h5>Puma</h5>
+<p><%= link_to 'Puma Status', rails_admin.ops_dashboard_path(command: 'puma_status'), method: :put %></p>
+<p><%= link_to 'Puma Restart', rails_admin.ops_dashboard_path(command: 'puma_restart'), method: :put %></p>
+<p><%= link_to 'Puma Log', rails_admin.ops_dashboard_path(command: 'puma_log', lines: 10000), method: :put %></p>
+
+<h5>Nginx</h5>
+<p><%= link_to 'Nginx Status', rails_admin.ops_dashboard_path(command: 'nginx_status'), method: :put %></p>
+<p><%= link_to 'Nginx Start', rails_admin.ops_dashboard_path(command: 'nginx_start'), method: :put %></p>
+<p><%= link_to 'Nginx Stop', rails_admin.ops_dashboard_path(command: 'nginx_stop'), method: :put %></p>
+<p><%= link_to 'Nginx Log', rails_admin.ops_dashboard_path(command: 'nginx_log', lines: 10000), method: :put %></p>
+
+<h5>Cache Warm</h5>
+<p><%= link_to 'Cache Warm', rails_admin.ops_dashboard_path(command: 'cache_warm'), method: :put %></p>
+<p><%= link_to 'Cache Warm Log', rails_admin.ops_dashboard_path(command: 'cache_warm_log', lines: 10000), method: :put %></p>
+
+<h5>Misc Commands</h5>
+<p><%= link_to 'Rails Directory', rails_admin.ops_dashboard_path(command: 'rails_directory'), method: :put %></p>
+<p><%= link_to 'Log Directory', rails_admin.ops_dashboard_path(command: 'log_directory'), method: :put %></p>
+<p><%= link_to 'Production Log', rails_admin.ops_dashboard_path(command: 'production_log', lines: 10000), method: :put %></p>
+<p><%= link_to 'Staging Log', rails_admin.ops_dashboard_path(command: 'staging_log', lines: 10000), method: :put %></p>
+<p><%= link_to 'Development Log', rails_admin.ops_dashboard_path(command: 'development_log', lines: 10000), method: :put %></p>

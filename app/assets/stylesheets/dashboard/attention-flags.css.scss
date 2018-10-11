@@ -1,0 +1,32 @@
+.attention-flag {
+  display:inline-block;
+  background-repeat:no-repeat;
+  width:19px;
+  height:19px;
+  line-height:19px;
+  vertical-align: middle;
+  text-align:center;
+
+  &.lastnote {
+    &.low {
+      background-image: url('/assets/icon-priority-low.svg');
+    }
+    &.med {
+      background-image: url('/assets/icon-priority-med-high.svg');
+    }
+    &.high {
+      background-image: url('/assets/icon-priority-high.svg');
+    }
+    &.med-low {
+      background-image: url('/assets/icon-priority-med-low.svg');
+    }
+  }
+
+  &.duration {
+    background-image: url('/assets/icon-duration-flag.svg');
+  }
+
+  &.touch {
+    background-image: url('/assets/icon-touch-flag.svg');
+  }
+}

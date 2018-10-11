@@ -1,0 +1,12 @@
+attributes:
+  - foreign_keys
+  - primary_keys
+  - timestamps
+  - inheritance
+  - content
+disconnected: false
+notation: bachman
+inheritance: true
+polymorphism: true
+title: "Dashboard V4 Production ERD - 08-Apr-2016"
+exclude: "Star, Feedback, DashboardModelValue, DashboardModel, ModelScore, FeaturesDashboardModel, ModelClaim, SchemaMigration, Financial, Notification"

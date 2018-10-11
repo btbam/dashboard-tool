@@ -1,0 +1,2 @@
+class SchemaMigration < WritableDashboardRecord
+end

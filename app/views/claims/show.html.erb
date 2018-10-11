@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Oracle Features for <%= params[:claim_id] %></h1>
+  <% @oracle_features.each do |feature| %>
+    <div><%= feature.inspect %></div>
+    <br />
+  <% end %>
+
+  <h1>PG Features for <%= params[:claim_id] %></h1>
+  <% @pg_features.each do |feature| %>
+    <div><%= feature.inspect %></div>
+    <br />
+  <% end %>
+</div>

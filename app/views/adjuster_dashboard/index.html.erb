@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= ENV['APP_TITLE'] %></title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+  <!--[if IE]><link rel="shortcut icon" href=<%= asset_path "favicon-#{Rails.env}.ico" %>><![endif]-->
+  <link rel=icon href=<%= asset_path "Dashboard_ico_16x16-#{Rails.env}.png" %> sizes="16x16" type="image/png">
+  <link rel=icon href=<%= asset_path "Dashboard_ico_32x32-#{Rails.env}.png" %> sizes="32x32" type="image/png">
+  <link rel=icon href=<%= asset_path "Dashboard_ico_48x48-#{Rails.env}.png" %> sizes="48x48" type="image/png">
+  <link rel=icon href=<%= asset_path "Dashboard_ico_64x64.png" %> sizes="64x64" type="image/png">
+  <link rel=icon href=<%= asset_path "Dashboard_ico_128x128.png" %> sizes="128x128" type="image/png">
+
+  <%= yield(:header) %>
+  <meta name="viewport" content="width=1280">
+</head>
+<body ng-app='Dashboard' ng-controller='DashboardCtrl as dashboard'>
+
+<app-header></app-header>
+
+<sidebar></sidebar>
+
+<main id="main" ng-class="{'with-sidebar': globalDataService.sidebarVisible}">
+  <dashboard id="dashboard" ng-class="{'with-sidebar': dashboard.globalDataService.sidebarVisible,
+    off: dashboard.globalDataService.view !== 'dashboard'}"
+    ng-hide="dashboard.globalDataService.view !== 'dashboard'"></dashboard>
+  <claim-list id="claim-list" ng-class="{'with-sidebar': dashboard.globalDataService.sidebarVisible,
+    off: dashboard.globalDataService.view !== 'inbox'}"
+    ng-hide="dashboard.globalDataService.detailVisible || dashboard.globalDataService.view !== 'inbox'"></claim-list>
+  <claim-detail id="claim-detail"
+    ng-if="dashboard.globalDataService.detailVisible"
+    ng-class="{'with-sidebar': dashboard.globalDataService.sidebarVisible}"></claim-detail>
+</main>
+
+<div id="blind" ng-class="{closed: ! dashboard.globalDataService.loadingApp}">
+  <div class="logo">
+    <img class="logo-name" src="/assets/logo.svg" width="250" alt="Dashboard">
+  </div>
+</div>
+
+<div id="cssload-container" ng-show="dashboard.globalDataService.loadingClaims || dashboard.globalDataService.loadingApp">
+  <div class="cssload-zenith"></div>
+</div>
+
+<%= render :partial => "footer" %>
+
+</body>
+</html>

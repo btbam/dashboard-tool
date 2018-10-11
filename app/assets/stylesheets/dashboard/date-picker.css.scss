@@ -1,0 +1,25 @@
+.date-picker {
+  white-space:nowrap;
+
+  button.icon {
+    padding: 0;
+    border: 0;
+
+    vertical-align: middle;
+    margin-right: 3px;
+    background:asset-url('icon-calendar.svg') no-repeat;
+    background-size: 18px 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  input[disabled] {
+    // Hide, but keep it in the HTML layout
+    border: 0;
+    width: 0;
+    height: 0;
+    padding:0;
+    margin: 0;
+    opacity: 0;
+  }
+}

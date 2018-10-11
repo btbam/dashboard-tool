@@ -1,0 +1,38 @@
+@import 'globals.css.scss';
+
+svg.histogram {
+
+  g.tick text {
+    fill:#666;
+  }
+
+  text {
+    text-anchor:middle;
+    font-size:10px;
+    fill:white;
+    font-family:sans-serif;
+  }
+
+  text.above {
+    fill:#666 !important;
+  }
+
+  .bar {
+    fill:steelblue;
+  }
+
+  .axis {
+    font:10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering:crispEdges;
+  }
+
+  .y.axis {
+    display:none;
+  }
+}

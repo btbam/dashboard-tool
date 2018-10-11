@@ -1,0 +1,18 @@
+<div id="context-switcher">
+
+  <input type="text" class="search no-glow"
+    ng-hide="!contextType"
+    ng-model="asyncSelected"
+    placeholder="Filter Adjusters"
+    typeahead="adjuster as adjuster.name for adjuster in getAdjusters($viewValue)"
+    typeahead-loading="loadingContext"
+    typeahead-min-length="3"
+    typeahead-no-results="noResults"
+    typeahead-on-select="getClaims($item)"
+    typeahead-template-url="/assets/templates/contextTypeahead.html"
+    typeahead-wait-ms="250">
+
+    <a ng-hide="globalDataService.loadingClaims || ! asyncSelected" ng-click="clearSelected()" class="clear-context-switcher"></a>
+
+    <div class="no-results" ng-if="noResults">No results found.</div>
+</div>

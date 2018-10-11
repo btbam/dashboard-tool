@@ -1,0 +1,78 @@
+upstream puma_<%= fetch(:nginx_config_name) %> { <%
+  @backends = [fetch(:puma_bind)].flatten.map do |m|
+  etype, address  = /(tcp|unix|ssl):\/{1,2}(.+)/.match(m).captures
+  if etype =='unix'
+    "server #{etype}:#{address} #{fetch(:nginx_socket_flags)};"
+  else
+    "server #{address.gsub(/0\.0\.0\.0(.+)/, "127.0.0.1\\1")} #{fetch(:nginx_http_flags)};"
+  end
+end
+%><% @backends.each do |server|  %>
+  <%= server %><% end %>
+}
+
+<% if fetch(:rails_env) == 'production' %>
+server {
+  listen 127.0.0.1:<%= fetch(:nginx_port) %>;
+  listen 8080;
+  #server_name dashboard-claim.dashboard.net;
+
+  root /home/vagrant/dashboard-tool/public;
+  try_files $uri/index.html $uri @puma_<%= fetch(:nginx_config_name) %>;
+  add_header "X-UA-Compatible" "IE=Edge,chrome=1";
+
+  gzip on;
+  gzip_proxied any;
+  gzip_min_length 1000;
+  gzip_comp_level 6;
+  gzip_types text/plain text/html text/css application/json application/x-javascript text/javascript;
+
+  location @puma_<%= fetch(:nginx_config_name) %> {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_redirect off;
+    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
+    proxy_connect_timeout 360;
+    proxy_send_timeout    360;
+    proxy_read_timeout    360;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 120;
+}
+<% else %>
+server {
+  listen <%= fetch(:nginx_port) %>
+
+  client_max_body_size 4G;
+  keepalive_timeout 120;
+
+  error_page 500 502 504 /500.html;
+  error_page 503 @503;
+
+  gzip on;
+  gzip_proxied any;
+  gzip_min_length 1000;
+  gzip_comp_level 6;
+  gzip_types text/plain text/html text/css application/json application/x-javascript text/javascript;
+
+  # server_name localhost dashboard-tool.local;
+  root /home/vagrant/dashboard-tool/current/public;
+  try_files $uri/index.html $uri @puma_<%= fetch(:nginx_config_name) %>;
+
+  location @puma_<%= fetch(:nginx_config_name) %> {
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
+    proxy_connect_timeout 360;
+    proxy_send_timeout    360;
+    proxy_read_timeout    360;
+    access_log /home/vagrant/dashboard-tool/shared/log/nginx.access.log;
+    error_log /home/vagrant/dashboard-tool/shared/log/nginx.error.log;
+  }
+}
+<% end %>
